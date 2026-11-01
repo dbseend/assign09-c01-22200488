@@ -1,5 +1,6 @@
 package com.webservice.assign09c0122200488.domain;
 
+import com.webservice.assign09c0122200488.dto.BookRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,12 +23,28 @@ public class Book {
     @Column(nullable = false, length = 100)
     private String author;
 
-    @Column(nullable = false)
-    private Integer price;
-
     @Column(nullable = false, length = 50)
     private String category;
 
-    @Column
+    @Column(nullable = false)
+    private Integer price;
+
+    @Column(nullable = false)
     private Double rating;
+
+    public Book(BookRequest bookRequest){
+        this.title = bookRequest.title();
+        this.author = bookRequest.author();
+        this.price = bookRequest.price();
+        this.category = bookRequest.category();
+        this.rating = bookRequest.rating();
+    }
+
+    public void update(BookRequest bookRequest){
+        this.title = bookRequest.title();
+        this.author = bookRequest.author();
+        this.price = bookRequest.price();
+        this.category = bookRequest.category();
+        this.rating = bookRequest.rating();
+    }
 }
