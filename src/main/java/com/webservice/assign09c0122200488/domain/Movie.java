@@ -25,7 +25,7 @@ public class Movie {
 
     @Column(nullable = false, length = 50)
     private String category;
-    
+
     @Column(nullable = false)
     private Integer releaseYear;
 
