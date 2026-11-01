@@ -1,10 +1,10 @@
 package com.webservice.assign09c0122200488.dto;
 
-public record BookRequest(
+public record MovieRequest(
         String title,
-        String author,
+        String director,
         String category,
-        Integer price,
+        Integer releaseYear,
         Double rating
 ) {
 }

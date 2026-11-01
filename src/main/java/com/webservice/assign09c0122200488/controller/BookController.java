@@ -1,8 +1,8 @@
 package com.webservice.assign09c0122200488.controller;
 
-import com.webservice.assign09c0122200488.BookService;
-import com.webservice.assign09c0122200488.dto.BookRequest;
-import com.webservice.assign09c0122200488.dto.BookResponse;
+import com.webservice.assign09c0122200488.service.MovieService;
+import com.webservice.assign09c0122200488.dto.MovieRequest;
+import com.webservice.assign09c0122200488.dto.MovieResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,37 +14,37 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookController {
 
-    private final BookService bookService;
+    private final MovieService movieService;
 
-    public BookController(BookService bookService){
-        this.bookService = bookService;
+    public BookController(MovieService movieService){
+        this.movieService = movieService;
     }
 
     @PostMapping("")
-    public ResponseEntity<BookResponse> createBook(@RequestBody BookRequest bookRequest){
-        BookResponse bookResponse = bookService.addBook(bookRequest);
+    public ResponseEntity<MovieResponse> createBook(@RequestBody MovieRequest bookRequest){
+        MovieResponse bookResponse = movieService.addBook(bookRequest);
 
         return ResponseEntity.created(URI.create("/api/books/" + bookResponse.id())).body(bookResponse);
     }
 
     @GetMapping("")
-    public List<BookResponse> getAllBooks(){
-        return bookService.getAllBooks();
+    public List<MovieResponse> getAllBooks(){
+        return movieService.getAllBooks();
     }
 
     @GetMapping("/{id}")
-    public Optional<BookResponse> getBookById(@PathVariable Long id){
-        return bookService.getBookById(id);
+    public Optional<MovieResponse> getBookById(@PathVariable Long id){
+        return movieService.getBookById(id);
     }
 
     @PutMapping("/{id}")
-    public BookResponse updateBookById(@PathVariable Long id, @RequestBody BookRequest bookRequest){
-        return bookService.updateBookById(id, bookRequest);
+    public MovieResponse updateBookById(@PathVariable Long id, @RequestBody MovieRequest bookRequest){
+        return movieService.updateBookById(id, bookRequest);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        bookService.deleteBookById(id);
+        movieService.deleteBookById(id);
         return ResponseEntity.noContent().build();
     }
 }
