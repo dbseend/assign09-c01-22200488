@@ -174,11 +174,15 @@ DBeaver의 `movies` Table 컬럼 구조
 
 ## ⑤ 배포 및 환경 설정
 - 환경변수 (변수명만 기록): `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
+- IntelliJ 설정 방법: Run → Edit Configurations → 실행 설정의 Environment variables: DB_URL, DB_USERNAME, DB_PASSWORD 설정 → application.properties가 내용을 읽고 프로그램 실행  
+실제 하드코딩 하지 않아도 환경변수를 읽고 디비를 불러와서 실행
+
 ![intellij-env](images/33-intellij-env.png)
 
 - Render 환경변수 (Environment 메뉴, 값은 마스킹 상태)
 
 ![render-env](images/32-render-env.png)
+- Render 배포 과정: 깃허브 연결, 브랜치 설정, 런타임 Docker, 환경 변수에 DB_URL, DB_USERNAME, DB_PASSWORD 설정 후 배포, 배포 확인 후 링크 통해 서버 이용
 - Render Web Service (Docker, Free, `main` 브랜치, 상태 Live)
 
 ![render-service](images/21-render-service.png)
@@ -205,7 +209,7 @@ DBeaver `movies` 조회: id 8, 9, 10이 저장됨
 
 ![dbeaver-after-render-post](images/37-dbeaver-after-render-post.png)
 
-- 발생한 문제와 해결 방법: 예외처리 애매하게 해서 뭐가 오류인지 정확하게 몰랐는데 Excpetion 해서 수정함
+- 발생한 문제와 해결 방법: 예외처리 애매하게 해서 뭐가 오류인지 정확하게 몰랐는데 Exception 해서 수정함
 ---
 
 ## ⑥ Weekly Report
@@ -216,15 +220,15 @@ DBeaver `movies` 조회: id 8, 9, 10이 저장됨
 3. Lombok의 NoArgsConstructor, Getter와 같은 어노테이션을 이용해서 불필요한 코드 작성을 줄임
 
 ### Problem & Solution
-Probolem: 예외처리를 구체적으로 하지 않아 예외가 발생했을 때 구체적인 오류를 찾지 못함
-Exception: 예외 코드 자세히 작성해 해결
+Problem: 예외처리를 구체적으로 하지 않아 예외가 발생했을 때 구체적인 오류를 찾지 못함  
+Solution: 예외 코드 자세히 작성해 해결
 ### Code Review
 ```java
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 }
 ```
-다른 코드들은 거의 변하지 않았는데 이번 수업의 핵심인 JPA를 알 수 있었고 가장 중요한 부분이라고 생각
-
+• Movie 엔티티와 Long 타입의 ID를 매핑하여, 별도의 구현 코드 없이 DB의 테이블과 상호작용하도록 설정
+• JpaRepository를 상속받음으로써 기본적인 CRUD(저장, 조회, 수정, 삭제) 및 페이징 처리를 위한 메서드를 자동으로 제공받아 사용
 ### AI Usage
 - 사용한 AI 도구: Claude
 - 사용한 부분: 리드미 초안 작성, 예외 코드 작성
