@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/books")
-public class BookController {
+@RequestMapping("/api/movies")
+public class MovieController {
 
     private final MovieService movieService;
 
-    public BookController(MovieService movieService){
+    public MovieController(MovieService movieService){
         this.movieService = movieService;
     }
 
